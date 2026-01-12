@@ -49,7 +49,7 @@ export default function TextEditor() {
     content: '',
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none min-h-[1056px]',
+        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none min-h-[1056px] dark:prose-invert',
       },
     },
     onUpdate: ({ editor }) => {
@@ -302,6 +302,12 @@ export default function TextEditor() {
             height: auto !important;
             overflow: visible !important;
           }
+        }
+        /* Fix for pasted black text in dark mode */
+        .dark .ProseMirror span[style*="color: #000000"],
+        .dark .ProseMirror span[style*="color: black"],
+        .dark .ProseMirror span[style*="color: rgb(0, 0, 0)"] {
+          color: inherit !important;
         }
       `}</style>
     </div>
